@@ -12,7 +12,17 @@ class StopwatchApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Stopwatch',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xFF011627),
+        scaffoldBackgroundColor: Color(0xFFF5FBEF),
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(color: Color(0xFF011627)),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Color(0xFF5F758E),
+          ),
+        ),
       ),
       home: StopwatchHomePage(),
     );
@@ -66,19 +76,35 @@ class _StopwatchHomePageState extends State<StopwatchHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stopwatch'),
+        title: Text('Stopwatch', style: TextStyle(color: Color(0xFFF5FBEF))),
+        backgroundColor: Color(0xFF011627),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              _formatTime(_stopwatch.elapsedMilliseconds),
-              style: TextStyle(
-                fontSize: 48.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.blueAccent,
-                fontFamily: 'Courier',
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Text(
+                _formatTime(_stopwatch.elapsedMilliseconds),
+                style: TextStyle(
+                  fontSize: 48.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF011627),
+                  fontFamily: 'Courier',
+                ),
               ),
             ),
             SizedBox(height: 40.0),
@@ -90,8 +116,9 @@ class _StopwatchHomePageState extends State<StopwatchHomePage> {
                   icon: Icon(_stopwatch.isRunning ? Icons.pause : Icons.play_arrow),
                   label: Text(_stopwatch.isRunning ? 'Pause' : 'Start'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blueAccent,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF5F758E),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     textStyle: TextStyle(fontSize: 20),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -104,8 +131,9 @@ class _StopwatchHomePageState extends State<StopwatchHomePage> {
                   icon: Icon(Icons.stop),
                   label: Text('Reset'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color(0xFF011627),
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                     textStyle: TextStyle(fontSize: 20),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -113,6 +141,27 @@ class _StopwatchHomePageState extends State<StopwatchHomePage> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 20.0),
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color(0xFF5F758E),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10,
+                    offset: Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.timer,
+                size: 100,
+                color: Color(0xFFF5FBEF),
+              ),
             ),
           ],
         ),
